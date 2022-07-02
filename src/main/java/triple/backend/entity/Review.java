@@ -1,6 +1,7 @@
 package triple.backend.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -14,6 +15,8 @@ import java.util.UUID;
 @Entity(name = "review")
 public class Review {
     @Id
+    @Column(length=36)
+    @Type(type = "uuid-char")
     private UUID reviewId;
 
     private String content;
@@ -29,6 +32,8 @@ public class Review {
     @JoinColumn(name = "userId")
     private User user;
 
+    @Column(length=36)
+    @Type(type = "uuid-char")
     private UUID placeId;
 
     @CreatedDate
