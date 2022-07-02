@@ -29,7 +29,7 @@ public class PointHistory {
     @Enumerated(EnumType.STRING)
     private PointDetails pointDetails;
 
-    private Integer point;
+    private int point;
 
     @CreatedDate
     private LocalDateTime createdDate;

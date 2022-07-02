@@ -1,9 +1,9 @@
 package triple.backend.enums;
 
 public enum PointDetails {
-    TEXT("텍스트 리뷰 작성"),
-    PHOTO("포토 리뷰 작성"),
-    BONUS("특정 장소에 첫 리뷰 작성");
+    TEXT("내용 점수"),
+    PHOTO("사진 점수"),
+    BONUS("보너스 점수");
 
     private final String title;
 

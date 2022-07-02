@@ -18,5 +18,5 @@ public class User {
     private UUID userId;
 
     @ColumnDefault("0")
-    private Integer point;
+    private int point;
 }
