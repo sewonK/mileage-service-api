@@ -26,6 +26,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.valueOf(StatusCode.REVIEW_NOT_FOUND.getStatus()));
     }
 
+    @ExceptionHandler(ActionTypeErrorException.class)
+    public ResponseEntity<ErrorResponse> handleActionTypeErrorException(ActionTypeErrorException e){
+        log.error("handleReviewNotFoundException",e);
+        ErrorResponse response = new ErrorResponse(StatusCode.REVIEW_NOT_FOUND);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(StatusCode.REVIEW_NOT_FOUND.getStatus()));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e){
         log.error("handleException",e);
