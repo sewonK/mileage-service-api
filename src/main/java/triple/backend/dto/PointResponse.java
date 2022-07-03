@@ -1,7 +1,6 @@
 package triple.backend.dto;
 
 import lombok.Getter;
-import triple.backend.entity.User;
 
 @Getter
 public class PointResponse {
