@@ -10,6 +10,7 @@ import triple.backend.repository.ReviewRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -26,8 +27,8 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public boolean isFirstReview(EventRequest eventRequest) {
-        Review review = reviewRepository.findFirstByPlaceIdOrderByCreatedDate(UUID.fromString(eventRequest.getPlaceId()));
-        return review.getReviewId().equals(UUID.fromString(eventRequest.getReviewId()));
+        Optional<Review> review = reviewRepository.findFirstByPlaceIdOrderByCreatedDate(UUID.fromString(eventRequest.getPlaceId()));
+        return review.map(r -> r.getReviewId().equals(UUID.fromString(eventRequest.getReviewId()))).orElse(false);
     }
 
     @Override
