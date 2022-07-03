@@ -6,9 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum PointDetails {
-    TEXT("내용 점수"),
-    PHOTO("사진 점수"),
-    BONUS("보너스 점수");
+    TEXT("리뷰 작성(텍스트)", 1),
+    PHOTO("리뷰 작성(사진)", 1),
+    BONUS("리뷰 작성(첫 리뷰)", 1),
+    ;
 
     private final String title;
+    private final int point;
 }
