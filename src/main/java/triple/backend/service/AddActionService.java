@@ -19,7 +19,7 @@ public class AddActionService implements ActionService {
     public int calculatePoints(EventRequest eventRequest) {
         int point = 0;
         for(PointDetails pointDetails: PointDetails.values()){
-            if(checkReviewType(eventRequest, pointDetails)){
+            if(checkCurrentReview(eventRequest, pointDetails)){
                 point += pointHistoryServiceImpl.savePointHistory(eventRequest, PointType.PLUS, pointDetails);
             }
         }
@@ -27,10 +27,10 @@ public class AddActionService implements ActionService {
     }
 
     @Override
-    public boolean checkReviewType(EventRequest eventRequest, PointDetails pointDetails) {
+    public boolean checkCurrentReview(EventRequest eventRequest, PointDetails pointDetails) {
         if(pointDetails == PointDetails.TEXT) return eventRequest.getContent().length() > 0;
-        if(pointDetails == PointDetails.PHOTO) return eventRequest.getAttachedPhotoIds().size() > 0;
-        if(pointDetails == PointDetails.BONUS) return reviewServiceImpl.isFirstReview(eventRequest);
+        else if(pointDetails == PointDetails.PHOTO) return eventRequest.getAttachedPhotoIds().size() > 0;
+        else if(pointDetails == PointDetails.BONUS) return reviewServiceImpl.isFirstReview(eventRequest);
         return false;
     }
 }

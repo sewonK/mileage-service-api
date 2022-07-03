@@ -18,7 +18,7 @@ public class ActionFactory {
             return new ModActionService(pointHistoryServiceImpl, reviewServiceImpl);
         }
         else if(actionType == ActionType.DELETE){
-            return new DeleteActionService(pointHistoryServiceImpl, reviewServiceImpl);
+            return new DeleteActionService(pointHistoryServiceImpl);
         } else {
             throw new ActionTypeErrorException();
         }

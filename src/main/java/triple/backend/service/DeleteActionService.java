@@ -8,17 +8,15 @@ import triple.backend.enums.PointType;
 @Service
 public class DeleteActionService implements ActionService {
     private final PointHistoryService pointHistoryServiceImpl;
-    private final ReviewService reviewServiceImpl;
 
-    public DeleteActionService(PointHistoryService pointHistoryServiceImpl, ReviewService reviewServiceImpl) {
+    public DeleteActionService(PointHistoryService pointHistoryServiceImpl) {
         this.pointHistoryServiceImpl = pointHistoryServiceImpl;
-        this.reviewServiceImpl = reviewServiceImpl;
     }
     @Override
     public int calculatePoints(EventRequest eventRequest) {
         int point = 0;
         for (PointDetails pointDetail : PointDetails.values()) {
-            if(hasReview(eventRequest, pointDetail)) {
+            if(checkBeforeReview(eventRequest, pointDetail)) {
                 point += pointHistoryServiceImpl.savePointHistory(eventRequest, PointType.MINUS, pointDetail);
             }
         }
@@ -26,14 +24,11 @@ public class DeleteActionService implements ActionService {
     }
 
     @Override
-    public boolean checkReviewType(EventRequest eventRequest, PointDetails pointDetails) {
-        if(pointDetails == PointDetails.TEXT) return eventRequest.getContent().length() > 0;
-        if(pointDetails == PointDetails.PHOTO) return eventRequest.getAttachedPhotoIds().size() > 0;
-        if(pointDetails == PointDetails.BONUS) return reviewServiceImpl.isFirstReview(eventRequest);
+    public boolean checkCurrentReview(EventRequest eventRequest, PointDetails pointDetails) {
         return false;
     }
 
-    public boolean hasReview(EventRequest eventRequest, PointDetails pointDetails) {
+    public boolean checkBeforeReview(EventRequest eventRequest, PointDetails pointDetails) {
         return pointHistoryServiceImpl.getPoint(eventRequest, pointDetails) > 0;
     }
 }

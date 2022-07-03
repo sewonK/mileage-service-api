@@ -19,10 +19,12 @@ public class ModActionService implements ActionService {
     public int calculatePoints(EventRequest eventRequest) {
         int point = 0;
         for(PointDetails pointDetails: PointDetails.values()){
-            if(checkReviewType(eventRequest, pointDetails) && !hasReview(eventRequest, pointDetails)){
+            // 현재는 O, 이전에는 X -> point ++
+            if(checkCurrentReview(eventRequest, pointDetails) && !checkBeforeReview(eventRequest, pointDetails)){
                 point += pointHistoryServiceImpl.savePointHistory(eventRequest, PointType.PLUS, pointDetails);
             }
-            else if(!checkReviewType(eventRequest, pointDetails) && hasReview(eventRequest, pointDetails)){
+            // 현재는 X, 이전에는 O -> point --
+            else if(!checkCurrentReview(eventRequest, pointDetails) && checkBeforeReview(eventRequest, pointDetails)){
                 point += pointHistoryServiceImpl.savePointHistory(eventRequest, PointType.MINUS, pointDetails);
             }
         }
@@ -30,14 +32,14 @@ public class ModActionService implements ActionService {
     }
 
     @Override
-    public boolean checkReviewType(EventRequest eventRequest, PointDetails pointDetails) {
+    public boolean checkCurrentReview(EventRequest eventRequest, PointDetails pointDetails) {
         if(pointDetails == PointDetails.TEXT) return eventRequest.getContent().length() > 0;
-        if(pointDetails == PointDetails.PHOTO) return eventRequest.getAttachedPhotoIds().size() > 0;
-        if(pointDetails == PointDetails.BONUS) return reviewServiceImpl.isFirstReview(eventRequest);
+        else if(pointDetails == PointDetails.PHOTO) return eventRequest.getAttachedPhotoIds().size() > 0;
+        else if(pointDetails == PointDetails.BONUS) return reviewServiceImpl.isFirstReview(eventRequest);
         return false;
     }
 
-    public boolean hasReview(EventRequest eventRequest, PointDetails pointDetails) {
+    public boolean checkBeforeReview(EventRequest eventRequest, PointDetails pointDetails) {
         return pointHistoryServiceImpl.getPoint(eventRequest, pointDetails) > 0;
     }
 }

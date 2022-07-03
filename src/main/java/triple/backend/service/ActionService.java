@@ -5,5 +5,5 @@ import triple.backend.enums.PointDetails;
 
 public interface ActionService {
     int calculatePoints(EventRequest eventRequest);
-    boolean checkReviewType(EventRequest eventRequest, PointDetails pointDetails);
+    boolean checkCurrentReview(EventRequest eventRequest, PointDetails pointDetails);
 }
