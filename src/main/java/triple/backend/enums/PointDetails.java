@@ -1,13 +1,16 @@
 package triple.backend.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum PointDetails {
-    TEXT("텍스트 리뷰 작성"),
-    PHOTO("포토 리뷰 작성"),
-    BONUS("특정 장소에 첫 리뷰 작성");
+    TEXT("리뷰 작성(텍스트)", 1),
+    PHOTO("리뷰 작성(사진)", 1),
+    BONUS("리뷰 작성(첫 리뷰)", 1),
+    ;
 
     private final String title;
-
-    PointDetails(String title) { this.title = title; }
-
-    public String getTitle() { return title; }
+    private final int point;
 }

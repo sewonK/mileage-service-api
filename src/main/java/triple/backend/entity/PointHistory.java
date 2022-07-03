@@ -1,7 +1,9 @@
 package triple.backend.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import triple.backend.enums.PointDetails;
 import triple.backend.enums.PointType;
 
@@ -11,8 +13,14 @@ import java.util.UUID;
 
 @Data
 @Entity(name="point_history")
+@Table(indexes = {
+        @Index(name="reviewMultiIndex", columnList = "reviewId, pointDetails"),
+        @Index(name="userIndex", columnList = "userId"),})
+@EntityListeners(AuditingEntityListener.class)
 public class PointHistory {
     @Id
+    @Column(length=36)
+    @Type(type = "uuid-char")
     private UUID historyId = UUID.randomUUID();
 
     @ManyToOne
@@ -29,7 +37,7 @@ public class PointHistory {
     @Enumerated(EnumType.STRING)
     private PointDetails pointDetails;
 
-    private Integer point;
+    private int point;
 
     @CreatedDate
     private LocalDateTime createdDate;
