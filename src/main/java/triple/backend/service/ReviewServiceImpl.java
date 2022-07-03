@@ -25,12 +25,19 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
+    public boolean isFirstReview(EventRequest eventRequest) {
+        Review review = reviewRepository.findFirstByPlaceIdOrderByCreatedDate(UUID.fromString(eventRequest.getPlaceId()));
+        return review.getReviewId().equals(UUID.fromString(eventRequest.getReviewId()));
+    }
+
+    @Override
     public void saveReview(EventRequest eventRequest) {
         Review review = findById(eventRequest.getReviewId());
-        review.setUser(userServiceImpl.findById(eventRequest.getUserId()));
         review.setReviewId(UUID.fromString(eventRequest.getReviewId()));
+        review.setUser(userServiceImpl.findById(eventRequest.getUserId()));
         review.setContent(eventRequest.getContent());
         review.setPlaceId(UUID.fromString(eventRequest.getPlaceId()));
+        reviewRepository.save(review);
 
         List<Photo> photoList = new ArrayList<>();
         for(String photoId: eventRequest.getAttachedPhotoIds()){
@@ -39,7 +46,6 @@ public class ReviewServiceImpl implements ReviewService{
             photoList.add(photo);
         }
         review.setAttachedPhotoIds(photoList);
-        reviewRepository.save(review);
     }
 
     @Override
