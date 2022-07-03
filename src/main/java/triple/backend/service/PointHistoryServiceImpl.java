@@ -10,6 +10,8 @@ import triple.backend.enums.PointDetails;
 import triple.backend.enums.PointType;
 import triple.backend.repository.PointHistoryRepository;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class PointHistoryServiceImpl implements PointHistoryService {
@@ -32,8 +34,7 @@ public class PointHistoryServiceImpl implements PointHistoryService {
     }
 
     @Override
-    public int getPoint(EventRequest eventRequest, PointDetails pointDetails) {
-        Review review = reviewServiceImpl.findById(eventRequest.getReviewId());
-        return pointHistoryRepository.getPointByReviewAndPointDetails(review, pointDetails).getPoint();
+    public Long getPoint(EventRequest eventRequest, PointDetails pointDetails) {
+        return pointHistoryRepository.getPointByReviewAndPointDetails(UUID.fromString(eventRequest.getReviewId()), pointDetails);
     }
 }

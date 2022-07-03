@@ -6,5 +6,5 @@ import triple.backend.enums.PointType;
 
 public interface PointHistoryService {
     int savePointHistory(EventRequest eventRequest, PointType pointType, PointDetails pointDetails);
-    int getPoint(EventRequest eventRequest, PointDetails pointDetails);
+    Long getPoint(EventRequest eventRequest, PointDetails pointDetails);
 }
