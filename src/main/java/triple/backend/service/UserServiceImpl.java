@@ -33,4 +33,10 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
         return new PointResponse(userId, user.getPoint());
     }
+
+    @Override
+    public PointResponse getUserPoint(String userId) {
+        User user = findById(userId);
+        return new PointResponse(userId, user.getPoint());
+    }
 }
