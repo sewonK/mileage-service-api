@@ -10,4 +10,6 @@ public interface UserService {
     int updatePoints(String userId, int diffPoint);
 
     PointResponse saveUserById(String userId);
+
+    PointResponse getUserPoint(String userId);
 }
