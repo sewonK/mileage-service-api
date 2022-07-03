@@ -14,8 +14,8 @@ import java.util.UUID;
 public interface PointHistoryRepository extends JpaRepository<PointHistory, UUID> {
     @Query(value = " SELECT SUM(p.point) as point "
             + " FROM point_history p "
-            + " WHERE p.review = :review "
+            + " WHERE p.review.id = :reviewId "
             + " and p.pointDetails = :pointDetails "
-            + " group by p.review, p.pointDetails")
-    PointHistory getPointByReviewAndPointDetails(@Param("review") Review review, @Param("pointDetails") PointDetails pointDetails);
+            + " group by p.review.id, p.pointDetails")
+    Long getPointByReviewAndPointDetails(@Param("reviewId") UUID reviewId, @Param("pointDetails") PointDetails pointDetails);
 }
