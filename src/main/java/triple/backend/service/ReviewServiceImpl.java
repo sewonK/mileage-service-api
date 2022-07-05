@@ -31,28 +31,4 @@ public class ReviewServiceImpl implements ReviewService{
         Optional<Review> review = reviewRepository.findFirstByPlaceIdOrderByCreatedDate(UUID.fromString(eventRequest.getPlaceId()));
         return review.map(r -> r.getReviewId().equals(UUID.fromString(eventRequest.getReviewId()))).orElse(false);
     }
-
-    @Override
-    public void saveReview(EventRequest eventRequest) {
-        Review review = reviewRepository.findById(UUID.fromString(eventRequest.getReviewId())).orElseGet(Review::new);
-        review.setReviewId(UUID.fromString(eventRequest.getReviewId()));
-        review.setUser(userServiceImpl.findById(eventRequest.getUserId()));
-        review.setContent(eventRequest.getContent());
-        review.setPlaceId(UUID.fromString(eventRequest.getPlaceId()));
-        reviewRepository.save(review);
-
-        List<Photo> photoList = new ArrayList<>();
-        for(String photoId: eventRequest.getAttachedPhotoIds()){
-            Photo photo = Photo.builder().photoId(UUID.fromString(photoId)).review(review).build();
-            photoRepository.save(photo);
-            photoList.add(photo);
-        }
-        review.setAttachedPhotoIds(photoList);
-    }
-
-    @Override
-    public void deleteReview(EventRequest eventRequest) {
-        Review review = findById(eventRequest.getReviewId());
-        reviewRepository.delete(review);
-    }
 }

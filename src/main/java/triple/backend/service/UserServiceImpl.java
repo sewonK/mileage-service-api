@@ -28,13 +28,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public PointResponse saveUserById(String userId) {
-        User user = User.builder().userId(UUID.fromString(userId)).build();
-        userRepository.save(user);
-        return new PointResponse(userId, user.getPoint());
-    }
-
-    @Override
     public PointResponse getUserPoint(String userId) {
         User user = findById(userId);
         return new PointResponse(userId, user.getPoint());
