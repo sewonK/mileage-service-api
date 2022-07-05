@@ -15,13 +15,14 @@ import java.util.UUID;
 @Data
 @Entity(name = "review")
 @Table(indexes = {
-        @Index(name="placeIndex", columnList = "placeId, createdDate")
+        @Index(name="idx_place", columnList = "place_id, created_date")
 })
 @EntityListeners(AuditingEntityListener.class)
 public class Review {
     @Id
-    @Column(length=36)
+    @Column(name = "review_id", length=36)
     @Type(type = "uuid-char")
+    @JoinColumn(name = "review_id")
     private UUID reviewId;
 
     private String content;
@@ -34,15 +35,18 @@ public class Review {
     private List<Photo> attachedPhotoIds = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(length=36)
+    @Column(name = "place_id", length=36)
     @Type(type = "uuid-char")
     private UUID placeId;
 
     @CreatedDate
+    @Column(name = "created_date")
     private LocalDateTime createdDate;
 
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    @Column(name = "updated_date")
+    private LocalDateTime updated_date;
 }

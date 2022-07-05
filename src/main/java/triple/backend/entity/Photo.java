@@ -16,10 +16,11 @@ import java.util.UUID;
 @Entity(name = "photo")
 public class Photo {
     @Id
-    @Column(length=36)
+    @Column(name = "photo_id", length=36)
     @Type(type = "uuid-char")
     private UUID photoId;
 
     @ManyToOne
+    @JoinColumn(name = "review_id")
     private Review review;
 }
