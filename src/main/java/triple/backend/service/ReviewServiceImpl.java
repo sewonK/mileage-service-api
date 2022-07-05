@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import triple.backend.dto.EventRequest;
 import triple.backend.entity.Photo;
 import triple.backend.entity.Review;
+import triple.backend.exception.ReviewNotFoundException;
 import triple.backend.repository.PhotoRepository;
 import triple.backend.repository.ReviewRepository;
 
@@ -22,7 +23,7 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public Review findById(String reviewId) {
-        return reviewRepository.findById(UUID.fromString(reviewId)).orElseGet(Review::new);
+        return reviewRepository.findById(UUID.fromString(reviewId)).orElseThrow(ReviewNotFoundException::new);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public void saveReview(EventRequest eventRequest) {
-        Review review = findById(eventRequest.getReviewId());
+        Review review = reviewRepository.findById(UUID.fromString(eventRequest.getReviewId())).orElseGet(Review::new);
         review.setReviewId(UUID.fromString(eventRequest.getReviewId()));
         review.setUser(userServiceImpl.findById(eventRequest.getUserId()));
         review.setContent(eventRequest.getContent());

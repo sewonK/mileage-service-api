@@ -14,8 +14,8 @@ import java.util.UUID;
 @Data
 @Entity(name="point_history")
 @Table(indexes = {
-        @Index(name="reviewMultiIndex", columnList = "reviewId, pointDetails"),
-        @Index(name="userIndex", columnList = "userId"),})
+        @Index(name="reviewMultiIndex", columnList = "review, pointDetails"),
+        @Index(name="userIndex", columnList = "user"),})
 @EntityListeners(AuditingEntityListener.class)
 public class PointHistory {
     @Id
