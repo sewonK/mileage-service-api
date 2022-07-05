@@ -23,7 +23,6 @@ public class AddActionService implements ActionService {
         return point;
     }
 
-    @Override
     public boolean checkCurrentReview(EventRequest eventRequest, PointDetails pointDetails) {
         if(pointDetails == PointDetails.TEXT) return eventRequest.getContent().length() > 0;
         else if(pointDetails == PointDetails.PHOTO) return eventRequest.getAttachedPhotoIds().size() > 0;

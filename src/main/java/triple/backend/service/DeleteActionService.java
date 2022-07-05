@@ -22,11 +22,6 @@ public class DeleteActionService implements ActionService {
         return point;
     }
 
-    @Override
-    public boolean checkCurrentReview(EventRequest eventRequest, PointDetails pointDetails) {
-        return false;
-    }
-
     public boolean checkBeforeReview(EventRequest eventRequest, PointDetails pointDetails) {
         return pointHistoryServiceImpl.getPoint(eventRequest, pointDetails) > 0;
     }
