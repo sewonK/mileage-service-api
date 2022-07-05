@@ -7,8 +7,4 @@ public interface ReviewService {
     Review findById(String reviewId);
 
     boolean isFirstReview(EventRequest eventRequest);
-
-    void saveReview(EventRequest eventRequest);
-
-    void deleteReview(EventRequest eventRequest);
 }

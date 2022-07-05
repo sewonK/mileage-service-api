@@ -10,6 +10,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Data
@@ -19,7 +20,7 @@ import java.util.UUID;
 @Entity(name = "users")
 public class User {
     @Id
-    @Column(length=36)
+    @Column(name = "user_id", length=36)
     @Type(type = "uuid-char")
     private UUID userId;
 
