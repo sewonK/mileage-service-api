@@ -1,17 +1,16 @@
 package triple.backend.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import triple.backend.dto.EventRequest;
 import triple.backend.enums.PointDetails;
 import triple.backend.enums.PointType;
 
 @Service
+@RequiredArgsConstructor
 public class DeleteActionService implements ActionService {
     private final PointHistoryService pointHistoryServiceImpl;
 
-    public DeleteActionService(PointHistoryService pointHistoryServiceImpl) {
-        this.pointHistoryServiceImpl = pointHistoryServiceImpl;
-    }
     @Override
     public int calculatePoints(EventRequest eventRequest) {
         int point = 0;

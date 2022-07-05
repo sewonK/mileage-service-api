@@ -10,7 +10,7 @@ import triple.backend.exception.ActionTypeErrorException;
 public class ActionFactory {
     private final PointHistoryService pointHistoryServiceImpl;
     private final ReviewService reviewServiceImpl;
-    public ActionService getAction(ActionType actionType) {
+    public ActionService getActionService(ActionType actionType) {
         if(actionType == ActionType.ADD){
             return new AddActionService(pointHistoryServiceImpl, reviewServiceImpl);
         }
