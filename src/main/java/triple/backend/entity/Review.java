@@ -34,7 +34,6 @@ public class Review {
     private List<Photo> attachedPhotoIds = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "userId")
     private User user;
 
     @Column(length=36)

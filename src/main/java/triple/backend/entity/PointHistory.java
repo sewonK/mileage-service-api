@@ -24,11 +24,9 @@ public class PointHistory {
     private UUID historyId = UUID.randomUUID();
 
     @ManyToOne
-    @JoinColumn(name = "reviewId")
     private Review review;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
     private User user;
 
     @Enumerated(EnumType.STRING)

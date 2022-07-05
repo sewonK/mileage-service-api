@@ -21,6 +21,5 @@ public class Photo {
     private UUID photoId;
 
     @ManyToOne
-    @JoinColumn(name = "reviewId")
     private Review review;
 }
