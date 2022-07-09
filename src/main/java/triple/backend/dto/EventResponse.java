@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EventResponse<T> extends Response {
-    private T data;
+    public T data;
 }
