@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import triple.backend.dto.EventRequest;
 import triple.backend.dto.EventResponse;
 import triple.backend.dto.PointResponse;
-import triple.backend.service.PointService;
-import triple.backend.service.ResponseService;
+import triple.backend.service.point.PointService;
+import triple.backend.service.response.ResponseService;
 
 @RestController
 @RequiredArgsConstructor

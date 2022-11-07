@@ -20,8 +20,8 @@ import triple.backend.dto.EventResponse;
 import triple.backend.dto.PointResponse;
 import triple.backend.enums.ActionType;
 import triple.backend.enums.StatusCode;
-import triple.backend.service.PointService;
-import triple.backend.service.ResponseService;
+import triple.backend.service.point.PointService;
+import triple.backend.service.response.ResponseService;
 
 import java.util.ArrayList;
 import java.util.List;

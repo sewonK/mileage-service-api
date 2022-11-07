@@ -1,10 +1,12 @@
-package triple.backend.service;
+package triple.backend.service.action;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import triple.backend.dto.EventRequest;
 import triple.backend.enums.PointDetails;
 import triple.backend.enums.PointType;
+import triple.backend.service.pointHistory.PointHistoryService;
+import triple.backend.service.review.ReviewService;
 
 @Service
 @RequiredArgsConstructor

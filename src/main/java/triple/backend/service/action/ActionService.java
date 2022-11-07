@@ -1,7 +1,6 @@
-package triple.backend.service;
+package triple.backend.service.action;
 
 import triple.backend.dto.EventRequest;
-import triple.backend.enums.PointDetails;
 
 public interface ActionService {
     int calculatePoints(EventRequest eventRequest);

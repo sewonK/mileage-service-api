@@ -1,11 +1,14 @@
 package triple.backend.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import triple.backend.dto.EventResponse;
 import triple.backend.dto.PointResponse;
-import triple.backend.service.ResponseService;
-import triple.backend.service.UserService;
+import triple.backend.service.response.ResponseService;
+import triple.backend.service.user.UserService;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,16 +1,12 @@
-package triple.backend.service;
+package triple.backend.service.review;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import triple.backend.dto.EventRequest;
-import triple.backend.entity.Photo;
 import triple.backend.entity.Review;
 import triple.backend.exception.ReviewNotFoundException;
-import triple.backend.repository.PhotoRepository;
 import triple.backend.repository.ReviewRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,8 +14,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService{
     private final ReviewRepository reviewRepository;
-    private final PhotoRepository photoRepository;
-    private final UserServiceImpl userServiceImpl;
 
     @Override
     public Review findById(String reviewId) {

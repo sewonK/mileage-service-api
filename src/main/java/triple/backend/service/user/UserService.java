@@ -1,4 +1,4 @@
-package triple.backend.service;
+package triple.backend.service.user;
 
 import triple.backend.dto.PointResponse;
 import triple.backend.entity.User;

@@ -1,4 +1,4 @@
-package triple.backend.service;
+package triple.backend.service.point;
 
 import triple.backend.dto.EventRequest;
 import triple.backend.dto.PointResponse;

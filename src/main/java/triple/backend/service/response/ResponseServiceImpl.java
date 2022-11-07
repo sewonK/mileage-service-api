@@ -1,4 +1,4 @@
-package triple.backend.service;
+package triple.backend.service.response;
 
 import org.springframework.stereotype.Service;
 import triple.backend.dto.EventResponse;

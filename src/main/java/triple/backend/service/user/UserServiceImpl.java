@@ -1,4 +1,4 @@
-package triple.backend.service;
+package triple.backend.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -14,8 +14,7 @@ import java.util.UUID;
 @Data
 @Entity(name="point_history")
 @Table(indexes = {
-        @Index(name="idx_review", columnList = "review_id, point_details"),
-        @Index(name="idx_user", columnList = "user_id"),})
+        @Index(name="idx_review", columnList = "review_id, point_details")})
 @EntityListeners(AuditingEntityListener.class)
 public class PointHistory {
     @Id
@@ -26,10 +25,6 @@ public class PointHistory {
     @ManyToOne
     @JoinColumn(name = "review_id")
     private Review review;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "point_type")

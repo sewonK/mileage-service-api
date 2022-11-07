@@ -1,9 +1,11 @@
-package triple.backend.service;
+package triple.backend.service.action;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import triple.backend.enums.ActionType;
 import triple.backend.exception.ActionTypeErrorException;
+import triple.backend.service.pointHistory.PointHistoryService;
+import triple.backend.service.review.ReviewService;
 
 @Service
 @RequiredArgsConstructor
